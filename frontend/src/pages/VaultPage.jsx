@@ -152,7 +152,7 @@ export default function VaultPage() {
       {loading ? (
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <Skeleton key={i} className="h-32 rounded-xl" />
+            <Skeleton key={`vault-skel-${i}`} className="h-32 rounded-xl" />
           ))}
         </div>
       ) : items.length === 0 ? (

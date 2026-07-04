@@ -329,7 +329,7 @@ function BreakdownTable({ result }) {
             </TableHeader>
             <TableBody>
               {result.breakdown?.map((b, i) => (
-                <TableRow key={i}>
+                <TableRow key={`${b.category}-${i}`}>
                   <TableCell>
                     <div className="font-medium">{b.category}</div>
                     <div className="text-xs text-muted-foreground max-w-xl mt-0.5">
@@ -365,7 +365,7 @@ function Extras({ result }) {
         <CardContent>
           <ul className="space-y-2 text-sm">
             {result.cost_drivers?.map((d, i) => (
-              <li key={i} className="flex gap-2">
+              <li key={`driver-${i}-${d.slice(0, 24)}`} className="flex gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
                 <span>{d}</span>
               </li>
@@ -380,7 +380,7 @@ function Extras({ result }) {
         <CardContent>
           <ul className="space-y-2 text-sm">
             {result.savings_tips?.map((d, i) => (
-              <li key={i} className="flex gap-2">
+              <li key={`tip-${i}-${d.slice(0, 24)}`} className="flex gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
                 <span>{d}</span>
               </li>
@@ -395,7 +395,7 @@ function Extras({ result }) {
         <CardContent>
           <ol className="space-y-2 text-sm list-decimal pl-5">
             {result.questions_to_ask?.map((q, i) => (
-              <li key={i}>{q}</li>
+              <li key={`q-${i}-${q.slice(0, 24)}`}>{q}</li>
             ))}
           </ol>
         </CardContent>
@@ -405,7 +405,7 @@ function Extras({ result }) {
           <InlineAlert tone="warning" title="Important caveats">
             <ul className="list-disc pl-5 space-y-1">
               {result.caveats.slice(0, 6).map((c, i) => (
-                <li key={i}>{c}</li>
+                <li key={`caveat-${i}-${c.slice(0, 24)}`}>{c}</li>
               ))}
             </ul>
           </InlineAlert>

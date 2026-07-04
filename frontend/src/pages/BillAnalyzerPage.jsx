@@ -398,7 +398,7 @@ function LineItemsTable({ result }) {
             </TableHeader>
             <TableBody>
               {(result.line_items || []).map((li, i) => (
-                <TableRow key={i}>
+                <TableRow key={`${li.description}-${li.billed_amount_inr}-${i}`}>
                   <TableCell>
                     <div className="font-medium">{li.description}</div>
                     <div className="text-xs text-muted-foreground mt-0.5 max-w-xl">
@@ -458,7 +458,7 @@ function FlagsAccordion({ result }) {
       <CardContent>
         <Accordion type="single" collapsible className="w-full">
           {result.flags.map((f, i) => (
-            <AccordionItem value={`f-${i}`} key={i}>
+            <AccordionItem value={`f-${f.code || i}`} key={f.code || `flag-${i}`}>
               <AccordionTrigger className="text-left">
                 <span className="flex items-center gap-2">
                   <span
@@ -504,7 +504,7 @@ function NextSteps({ result }) {
         {result.next_steps?.length > 0 && (
           <ol className="space-y-2 text-sm list-decimal pl-5">
             {result.next_steps.map((s, i) => (
-              <li key={i} className="leading-relaxed">
+              <li key={`step-${i}-${s.slice(0, 24)}`} className="leading-relaxed">
                 {s}
               </li>
             ))}
@@ -517,7 +517,7 @@ function NextSteps({ result }) {
             </div>
             <ul className="space-y-2 text-sm">
               {result.questions_to_ask.map((q, i) => (
-                <li key={i} className="flex gap-2">
+                <li key={`q-${i}-${q.slice(0, 24)}`} className="flex gap-2">
                   <span className="tabular text-muted-foreground font-medium">
                     Q{i + 1}.
                   </span>
@@ -531,7 +531,7 @@ function NextSteps({ result }) {
           <InlineAlert tone="warning" title="Important caveats">
             <ul className="list-disc pl-5 space-y-1">
               {result.caveats.slice(0, 6).map((c, i) => (
-                <li key={i}>{c}</li>
+                <li key={`caveat-${i}-${c.slice(0, 24)}`}>{c}</li>
               ))}
             </ul>
           </InlineAlert>

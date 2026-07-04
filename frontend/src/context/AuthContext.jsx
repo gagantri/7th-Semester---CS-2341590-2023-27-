@@ -9,15 +9,23 @@ const AuthContext = createContext({
   logout: async () => {},
   refresh: async () => {},
   loginWithGoogleSession: async () => {},
+  humanError,
 });
 
+/**
+ * Auth state provider. Reads/writes only via the httpOnly `session_token`
+ * cookie the backend sets — no tokens ever touch localStorage.
+ */
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const refresh = useCallback(async () => {
-    // If returning from OAuth callback, let AuthCallback handle it first.
-    if (typeof window !== 'undefined' && window.location.hash?.includes('session_id=')) {
+    if (
+      typeof window !== 'undefined' &&
+      window.location.hash?.includes('session_id=')
+    ) {
+      // AuthCallback will handle the exchange; skip preflight probe.
       setLoading(false);
       return;
     }
@@ -37,22 +45,20 @@ export function AuthProvider({ children }) {
 
   const login = useCallback(async (email, password) => {
     const { data } = await api.post('/auth/login', { email, password });
-    localStorage.setItem('gavixa_token', data.access_token);
     setUser(data.user);
     return data.user;
   }, []);
 
   const signup = useCallback(async (payload) => {
     const { data } = await api.post('/auth/signup', payload);
-    localStorage.setItem('gavixa_token', data.access_token);
     setUser(data.user);
     return data.user;
   }, []);
 
   const loginWithGoogleSession = useCallback(async (sessionId) => {
-    const { data } = await api.post('/auth/google/session', { session_id: sessionId });
-    // For Google auth we rely on cookie; clear any JWT.
-    localStorage.removeItem('gavixa_token');
+    const { data } = await api.post('/auth/google/session', {
+      session_id: sessionId,
+    });
     setUser(data.user);
     return data.user;
   }, []);
@@ -61,9 +67,8 @@ export function AuthProvider({ children }) {
     try {
       await api.post('/auth/logout');
     } catch {
-      /* ignore */
+      /* best-effort */
     }
-    localStorage.removeItem('gavixa_token');
     setUser(null);
   }, []);
 

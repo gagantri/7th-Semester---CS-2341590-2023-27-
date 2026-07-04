@@ -3,27 +3,24 @@ import axios from 'axios';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API_BASE = `${BACKEND_URL}/api`;
 
+/**
+ * Shared HTTP client for GavixaCare.
+ *
+ * Auth is fully cookie-based: the backend sets an httpOnly `session_token`
+ * cookie on successful signup / login / OAuth callback. The browser sends it
+ * automatically on subsequent requests when `withCredentials` is true. We
+ * intentionally do NOT store tokens in localStorage — that would expose them
+ * to XSS.
+ */
 export const api = axios.create({
   baseURL: API_BASE,
-  withCredentials: true, // Send cookies for Google OAuth session
+  withCredentials: true,
   timeout: 60000,
-});
-
-/** Attach JWT access token from localStorage to every request (if present). */
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('gavixa_token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
 });
 
 api.interceptors.response.use(
   (r) => r,
-  (err) => {
-    // Pass through; components decide how to react.
-    return Promise.reject(err);
-  }
+  (err) => Promise.reject(err)
 );
 
 export function humanError(err) {

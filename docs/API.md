@@ -1,7 +1,11 @@
 # GavixaCare — API Reference
 
-> **Version:** 1.0 · **Base URL:** `${REACT_APP_BACKEND_URL}/api`
-> All endpoints are JSON. Auth via `Authorization: Bearer <jwt>` or `session_token` cookie.
+> **Version:** 1.1 · **Base URL:** `${REACT_APP_BACKEND_URL}/api`
+> All endpoints are JSON. Auth is **cookie-based by default** (`session_token`
+> HttpOnly cookie set by `/auth/signup`, `/auth/login`, `/auth/google/session`).
+> Bearer JWT is also accepted for programmatic clients — the same
+> `session_token` may be sent as either a cookie **or** a
+> `Authorization: Bearer <token>` header.
 
 ## Health
 

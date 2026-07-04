@@ -1,38 +1,38 @@
 [
   {
-    "content": "Phase 1: POC complete (Claude bill fraud + cost estimator validated)",
+    "content": "Push back on false positives (testIds not secrets; is None is correct Python; db.py globals initialized)",
     "status": "completed"
   },
   {
-    "content": "Phase 2: Design guidelines received",
+    "content": "SECURITY FIX: Move JWT auth to httpOnly session_token cookie (backend + frontend)",
     "status": "completed"
   },
   {
-    "content": "Phase 2: Backend built - 32 hospitals seeded, all Phase-1 routes live",
+    "content": "REFACTOR: Extract get_current_user into smaller helpers",
     "status": "completed"
   },
   {
-    "content": "Phase 2: Frontend built - landing, auth, dashboard, hospitals, bill analyzer, cost estimator, emergency, vault, settings",
+    "content": "REFACTOR: Split ai_provider._extract_json_block + generate_json into helpers",
     "status": "completed"
   },
   {
-    "content": "Phase 2: End-to-End Testing via testing_agent_v3 (96% pass, signup bug fixed)",
+    "content": "REFACTOR: Split auth_service.exchange_google_session into helpers",
     "status": "completed"
   },
   {
-    "content": "Phase 5: Initial enterprise docs delivered (PRD, Architecture, Brand, API, Business Model, Legal, MVP Delivery)",
+    "content": "REACT: AuthContext already uses useCallback + all deps in useMemo",
     "status": "completed"
   },
   {
-    "content": "Phase 3.1: Persisted analyses history + saved comparisons (future)",
-    "status": "pending"
+    "content": "REACT: Replace unstable array index keys with stable ids across BillAnalyzer, CostEstimator, Vault, HospitalsList",
+    "status": "completed"
   },
   {
-    "content": "Phase 4: Phase-2 features (doctors, family, preventive, WhatsApp, insurance) (future)",
-    "status": "pending"
+    "content": "Re-verify: browser auth via cookies works, no localStorage tokens, AI + hospitals endpoints still green",
+    "status": "completed"
   },
   {
-    "content": "Phase 5 (cont.): Full legal docs, GTM playbook, investor deck, financial model (future)",
-    "status": "pending"
+    "content": "Run testing_agent_v3 to verify no regressions from refactor",
+    "status": "in_progress"
   }
 ]
