@@ -1,0 +1,54 @@
+[
+  {
+    "content": "Phase 1: Get Claude Sonnet 4.5 integration playbook via Emergent LLM Key",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 1: Get Google OAuth integration playbook (Emergent)",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 1: Build AIProvider abstraction + ClaudeProvider implementation",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 1: Create test_core.py POC covering Bill Fraud Detection + Cost Estimator",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 1: Run POC and fix until schema-valid outputs work reliably",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 2: Get design guidelines from design_agent (Apple Health + Stripe + Linear vibe)",
+    "status": "in_progress"
+  },
+  {
+    "content": "Phase 2: Build backend - hospitals, AI endpoints, emergency, vault, seed data, auth foundations",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Build frontend - landing, directory, hospital detail, compare, bill detector, cost estimator, emergency, vault, auth pages",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: End-to-End Testing via testing_agent_v3",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3: Add JWT + Google OAuth full flow + user-scoped features",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3: Auth flow testing via testing_agent_v3",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 4: Phase-2 features (doctors, family, preventive, WhatsApp, insurance)",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 5: Enterprise Documentation Package in /app/docs",
+    "status": "pending"
+  }
+]
