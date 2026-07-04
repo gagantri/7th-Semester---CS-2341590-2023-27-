@@ -1,55 +1,139 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { Toaster } from '@/components/ui/sonner';
+import { AuthProvider } from '@/context/AuthContext';
+import { ThemeProvider } from '@/context/ThemeContext';
+import { AppShell } from '@/components/layout/AppShell';
+import { ProtectedRoute } from '@/components/layout/ProtectedRoute';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import LandingPage from '@/pages/LandingPage';
+import LoginPage from '@/pages/auth/LoginPage';
+import SignupPage from '@/pages/auth/SignupPage';
+import AuthCallback from '@/pages/auth/AuthCallback';
+import DashboardPage from '@/pages/DashboardPage';
+import HospitalsListPage from '@/pages/hospitals/HospitalsListPage';
+import HospitalDetailPage from '@/pages/hospitals/HospitalDetailPage';
+import HospitalComparePage from '@/pages/hospitals/HospitalComparePage';
+import BillAnalyzerPage from '@/pages/BillAnalyzerPage';
+import CostEstimatorPage from '@/pages/CostEstimatorPage';
+import EmergencyPage from '@/pages/EmergencyPage';
+import VaultPage from '@/pages/VaultPage';
+import SettingsPage from '@/pages/SettingsPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+import '@/App.css';
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
+/**
+ * Detect OAuth callback fragment synchronously (not in useEffect) to avoid
+ * race with AuthContext.checkAuth().
+ */
+function AppRouter() {
+  const location = useLocation();
+  if (location.hash?.includes('session_id=')) {
+    return <AuthCallback />;
+  }
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+
+      {/* Public browsing (no auth required) */}
+      <Route
+        path="/hospitals"
+        element={
+          <AppShell>
+            <HospitalsListPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="/hospitals/compare"
+        element={
+          <AppShell>
+            <HospitalComparePage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="/hospitals/:id"
+        element={
+          <AppShell>
+            <HospitalDetailPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="/bill-analyzer"
+        element={
+          <AppShell>
+            <BillAnalyzerPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="/cost-estimator"
+        element={
+          <AppShell>
+            <CostEstimatorPage />
+          </AppShell>
+        }
+      />
+      <Route
+        path="/emergency"
+        element={
+          <AppShell>
+            <EmergencyPage />
+          </AppShell>
+        }
+      />
+
+      {/* Authenticated area */}
+      <Route
+        path="/app"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <DashboardPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/vault"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <VaultPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <AppShell>
+              <SettingsPage />
+            </AppShell>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
-};
+}
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <AppRouter />
+          <Toaster richColors position="top-right" />
+        </AuthProvider>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 

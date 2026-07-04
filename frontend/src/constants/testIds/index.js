@@ -1,15 +1,58 @@
-// constants/testIds/ — central registry of data-testid values used by the
-// end-to-end testing agent (qabot) to locate and interact with UI elements
-// during automated tests. UI without testids cannot be automatically verified.
-//
-// Structure: each feature lives in its own file (auth.js, cart.js, ...) and
-// is re-exported from here, so consumers can do a single import like
-// `import { LOGIN, CART } from '@/constants/testIds'` (or relative).
-//
-// Adding a new feature:
-//   1. Create constants/testIds/<feature>.js
-//   2. Export named objects (e.g. `export const PROFILE = { ... }`)
-//   3. Re-export here: `export * from './<feature>';`
-
-export * from './auth';
-export * from './home';
+export const TEST_IDS = {
+  layout: {
+    themeToggle: 'app-theme-toggle',
+    userMenu: 'app-user-menu',
+    logoutButton: 'app-logout-button',
+  },
+  landing: {
+    heroPrimaryCta: 'landing-hero-primary-cta',
+    heroSecondaryCta: 'landing-hero-secondary-cta',
+    featureCard: 'landing-feature-card',
+    loginLink: 'landing-login-link',
+    signupLink: 'landing-signup-link',
+  },
+  auth: {
+    loginEmail: 'auth-login-email',
+    loginPassword: 'auth-login-password',
+    loginSubmit: 'auth-login-submit',
+    loginGoogle: 'auth-login-google',
+    signupName: 'auth-signup-name',
+    signupEmail: 'auth-signup-email',
+    signupPassword: 'auth-signup-password',
+    signupSubmit: 'auth-signup-submit',
+  },
+  hospitals: {
+    searchInput: 'hospitals-search-input',
+    cityFilter: 'hospitals-city-filter',
+    tierFilter: 'hospitals-tier-filter',
+    specialtyFilter: 'hospitals-specialty-filter',
+    resultCard: 'hospitals-result-card',
+    compareButton: 'hospitals-compare-button',
+    detailBack: 'hospitals-detail-back',
+  },
+  bill: {
+    textarea: 'bill-input-textarea',
+    submit: 'bill-analyze-submit',
+    hospitalName: 'bill-input-hospital',
+    cityInput: 'bill-input-city',
+    resultSummary: 'bill-result-summary',
+  },
+  cost: {
+    conditionInput: 'cost-input-condition',
+    cityInput: 'cost-input-city',
+    tierSelect: 'cost-input-tier',
+    insuranceInput: 'cost-input-insurance',
+    submit: 'cost-submit',
+    resultRange: 'cost-result-range',
+  },
+  emergency: {
+    requestLocation: 'emergency-request-location',
+    callAmbulance: 'emergency-call-ambulance-button',
+    call112: 'emergency-call-112',
+  },
+  vault: {
+    uploadInput: 'vault-upload-input',
+    uploadSubmit: 'vault-upload-submit',
+    docItem: 'vault-doc-item',
+  },
+};

@@ -36,7 +36,7 @@ Guidelines:
 """
 
 
-SCHEMA_HINT = """Return a JSON object with EXACTLY this schema:
+SCHEMA_HINT = """Return a JSON object with EXACTLY this schema. Keep responses concise (reasons under 25 words, questions under 20 words).
 {
   "summary": {
     "total_billed_inr": integer,
@@ -72,8 +72,11 @@ SCHEMA_HINT = """Return a JSON object with EXACTLY this schema:
   "confidence": "low"|"medium"|"high",
   "caveats": [string]
 }
-The `line_items` array MUST cover every distinct billed line.
-The `questions_to_ask` array MUST contain at least 3 practical questions.
+Rules:
+- Cover EVERY distinct billed line in `line_items` (keep reasons under 25 words).
+- Maximum 6 `flags` (highest severity only) and maximum 6 `next_steps`.
+- 3-6 `questions_to_ask`; 2-5 `caveats`.
+- Keep each string field concise. Do not repeat information across sections.
 """
 
 

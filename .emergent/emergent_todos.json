@@ -1,46 +1,26 @@
 [
   {
-    "content": "Phase 1: Get Claude Sonnet 4.5 integration playbook via Emergent LLM Key",
+    "content": "Phase 1: POC complete (Claude bill fraud + cost estimator validated)",
     "status": "completed"
   },
   {
-    "content": "Phase 1: Get Google OAuth integration playbook (Emergent)",
+    "content": "Phase 2: Design guidelines received",
     "status": "completed"
   },
   {
-    "content": "Phase 1: Build AIProvider abstraction + ClaudeProvider implementation",
+    "content": "Phase 2: Backend built - 32 hospitals seeded, all Phase-1 routes live",
     "status": "completed"
   },
   {
-    "content": "Phase 1: Create test_core.py POC covering Bill Fraud Detection + Cost Estimator",
+    "content": "Phase 2: Frontend built - landing, auth, dashboard, hospitals, bill analyzer, cost estimator, emergency, vault, settings all live",
     "status": "completed"
-  },
-  {
-    "content": "Phase 1: Run POC and fix until schema-valid outputs work reliably",
-    "status": "completed"
-  },
-  {
-    "content": "Phase 2: Get design guidelines from design_agent (Apple Health + Stripe + Linear vibe)",
-    "status": "in_progress"
-  },
-  {
-    "content": "Phase 2: Build backend - hospitals, AI endpoints, emergency, vault, seed data, auth foundations",
-    "status": "pending"
-  },
-  {
-    "content": "Phase 2: Build frontend - landing, directory, hospital detail, compare, bill detector, cost estimator, emergency, vault, auth pages",
-    "status": "pending"
   },
   {
     "content": "Phase 2: End-to-End Testing via testing_agent_v3",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
-    "content": "Phase 3: Add JWT + Google OAuth full flow + user-scoped features",
-    "status": "pending"
-  },
-  {
-    "content": "Phase 3: Auth flow testing via testing_agent_v3",
+    "content": "Phase 3: Auth hardening + user-scoped saved analyses",
     "status": "pending"
   },
   {
