@@ -56,7 +56,7 @@ async def signup(payload: SignupPayload) -> LoginResult:
 
     token = create_access_token(user_id, extra={"email": email})
     return LoginResult(
-        user=UserPublic(**user_doc, created_at=now),
+        user=UserPublic(**{**user_doc, "created_at": now}),
         access_token=token,
     )
 

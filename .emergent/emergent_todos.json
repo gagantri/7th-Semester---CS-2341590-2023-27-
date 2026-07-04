@@ -12,23 +12,27 @@
     "status": "completed"
   },
   {
-    "content": "Phase 2: Frontend built - landing, auth, dashboard, hospitals, bill analyzer, cost estimator, emergency, vault, settings all live",
+    "content": "Phase 2: Frontend built - landing, auth, dashboard, hospitals, bill analyzer, cost estimator, emergency, vault, settings",
     "status": "completed"
   },
   {
-    "content": "Phase 2: End-to-End Testing via testing_agent_v3",
-    "status": "in_progress"
+    "content": "Phase 2: End-to-End Testing via testing_agent_v3 (96% pass, signup bug fixed)",
+    "status": "completed"
   },
   {
-    "content": "Phase 3: Auth hardening + user-scoped saved analyses",
+    "content": "Phase 5: Initial enterprise docs delivered (PRD, Architecture, Brand, API, Business Model, Legal, MVP Delivery)",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 3.1: Persisted analyses history + saved comparisons (future)",
     "status": "pending"
   },
   {
-    "content": "Phase 4: Phase-2 features (doctors, family, preventive, WhatsApp, insurance)",
+    "content": "Phase 4: Phase-2 features (doctors, family, preventive, WhatsApp, insurance) (future)",
     "status": "pending"
   },
   {
-    "content": "Phase 5: Enterprise Documentation Package in /app/docs",
+    "content": "Phase 5 (cont.): Full legal docs, GTM playbook, investor deck, financial model (future)",
     "status": "pending"
   }
 ]
